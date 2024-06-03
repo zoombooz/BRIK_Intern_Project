@@ -1,5 +1,9 @@
 # BRIK_Intern_Project
 
+User example : 
+email: john.doe@email.com
+password : john.doe
+
 How to run program : 
 1. Open the server folder by inputing 'cd Server' in terminal
 2. Install the necessary modules by inputing 'npm install' in terminal

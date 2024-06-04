@@ -1,5 +1,53 @@
 <script>
-
+import axios from 'axios'
+import Swal from 'sweetalert2'
+export default {
+  data() {
+    return {
+      name: '',
+      category: '',
+      description: '',
+      weight: '',
+      width: '',
+      length: '',
+      height: '',
+      imgURL: '',
+      price: ''
+    }
+  },
+  method: {
+    async handleSubmit(){
+      try {
+        const requestBody = {
+          CategoryId : 14,
+          categoryName : this.category,
+          sku : ASDF,
+          name : this.name,
+          description : this.description,
+          weight : this.weight,
+          width : this.width,
+          length : this.length,
+          height : this.height,
+          image : this.imgURL,
+          harga : this.price
+        }
+        const response = await axios.post('http://localhost:3000/products/add-product', requestBody)
+        Swal.fire({
+          title: "Good job!",
+          text: "Product has been added!",
+          icon: "success"
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log(error);
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -8,17 +56,19 @@
         <h1 class="text-2xl font-extrabold sm:text-3xl">Add a product</h1>
       </div>
     
-      <form action="#" class="mx-auto mb-0 mt-8 max-w-5xl space-y-4">
+      <form @submit.prevent="handleSubmit" action="#" class="mx-auto mb-0 mt-8 max-w-5xl space-y-4">
         <div class="flex">
           <div class="mr-4 w-1/2">
             <label for="name" class="sr-only">Product name</label>
       
             <div class="relative">
               <input
+                required
                 id="name"
                 type="text"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Product name"
+                v-model="name"
               />
             </div>
           </div>
@@ -28,10 +78,12 @@
       
             <div class="relative">
               <input
+                required
                 id="category"
                 type="text"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Category"
+                v-model="category"
               />
             </div>
           </div>
@@ -45,19 +97,9 @@
               id="description" 
               placeholder="Description" 
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              v-model="description"
+              required
             ></textarea>
-          </div>
-        </div>
-        <div>
-          <label for="category" class="sr-only">Category</label>
-    
-          <div class="relative">
-            <input
-              id="category"
-              type="text"
-              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-              placeholder="Category"
-            />
           </div>
         </div>
         <div class="flex ">
@@ -70,6 +112,8 @@
                 type="number"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Weight"
+                v-model="weight"
+                required
               />
             </div>
           </div>
@@ -82,6 +126,8 @@
                 type="number"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Width"
+                v-model="width"
+                required
               />
             </div>
           </div>
@@ -94,6 +140,8 @@
                 type="number"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Length"
+                v-model="length"
+                required
               />
             </div>
           </div>  
@@ -106,6 +154,8 @@
                 type="number"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Height"
+                v-model="height"
+                required
               />
             </div>
           </div>
@@ -119,6 +169,8 @@
               type="text"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Image URL"
+              v-model="imgURL"
+              required
             />
           </div>
         </div>
@@ -131,6 +183,8 @@
               type="number"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Price"
+              v-model="price"
+              required
             />
           </div>
         </div>

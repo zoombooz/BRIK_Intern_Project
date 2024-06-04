@@ -1,5 +1,13 @@
 <script>
-
+export default {
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
+  }
+}
 </script>
 
 <template>
@@ -22,6 +30,7 @@
               type="text"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter your name"
+              v-model="name"
             />
     
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -40,6 +49,7 @@
               type="email"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter email"
+              v-model="email"
             />
     
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -69,6 +79,7 @@
               type="password"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
+              v-model="password"
             />
     
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">

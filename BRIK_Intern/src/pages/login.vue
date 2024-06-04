@@ -1,5 +1,31 @@
 <script>
-
+import axios from 'axios'
+import Swal from 'sweetalert2'
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async handleSubmit() {
+      try {
+        console.log("<<<");
+        const requestBody = {email: this.email, password: this.password}
+        const response = await axios.post('http://localhost:3000/user/login', requestBody)
+        localStorage.setItem('accessToken', response.data.token)
+        Swal.fire({
+          title: "Good job!",
+          text: "You successfully login!",
+          icon: "success"
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -13,7 +39,7 @@
         </p>
       </div>
     
-      <form action="#" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <form @submit.prevent="handleSubmit" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
         <div>
           <label for="email" class="sr-only">Email</label>
     
@@ -22,6 +48,7 @@
               type="email"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter email"
+              v-model="email"
             />
     
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -51,6 +78,7 @@
               type="password"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
+              v-model="password"
             />
     
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">

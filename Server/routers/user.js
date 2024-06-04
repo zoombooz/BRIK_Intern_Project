@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('../config/connection')
 const { comparePassword } = require('../helpers/bcrypt')
+const { signToken } = require('../helpers/jwt')
 const router = express.Router()
 
 router.post('/login', async (req, res) => {
@@ -17,7 +18,12 @@ router.post('/login', async (req, res) => {
         if(!user || !comparePassword(password, user?.password)){
             res.status(400).json({message : "Invalid Email/Password"})
         }else{
-            res.status(200).json(user)
+            let payload = {
+                email: user.email,
+                name: user.name
+            }
+            let token = signToken(payload)
+            res.status(200).json({token})
         }
     } catch (error) {
         console.log(error);

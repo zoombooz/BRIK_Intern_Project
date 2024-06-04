@@ -1,5 +1,5 @@
 <template>
-    <div class="relative flex h-screen flex-col justify-between border-e bg-white">
+    <div class="relative flex h-min-full flex-col justify-between w-1/5 border-e bg-white">
         <div class="px-4 py-6">
             <h1 class="font-extrabold text-3xl text-gray-600">BRIK Kelontong</h1>
         

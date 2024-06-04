@@ -3,10 +3,9 @@
 </script>
 
 <template>
-    
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="h-min-full h-screen mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-lg text-center">
-        <h1 class="text-2xl font-bold sm:text-3xl">Login</h1>
+        <h1 class="text-2xl font-extrabold sm:text-3xl">Login</h1>
     
         <p class="mt-4 text-gray-500">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
@@ -82,7 +81,7 @@
         <div class="flex items-center justify-between">
           <p class="text-sm text-gray-500">
             No account?
-            <a class="underline" href="#">Sign up</a>
+            <router-link class="underline" to="/register">Register</router-link>
           </p>
     
           <button

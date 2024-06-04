@@ -16,11 +16,12 @@ export default {
 </script>
 
 <template>
-    <div class="overflow-y-scroll rounded-lg border border-gray-200 p-8">
+    <div class="overflow-y-scroll flex flex-col rounded-lg border border-gray-200 p-8">
         <div class="overflow-x-auto rounded-t-lg">
             <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead class="ltr:text-left rtl:text-right">
                 <tr>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Category</th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Description</th>
@@ -29,6 +30,7 @@ export default {
             </thead>
             <tbody class="divide-y divide-gray-200">
                 <tr v-for="product in products" :key="product.id">
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ product.id }}</td>
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><router-link :to="{name : 'Detail', params: {id : product.id}}">{{ product.name }}</router-link></td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ product.categoryName }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ product.description }}</td>
